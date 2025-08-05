@@ -9,26 +9,26 @@ All colors MUST be HSL.
 @layer base {
   :root {
     --background: 250 50% 98%;
-    --foreground: 224 25% 15%;
+    --foreground: 0 0% 0%;
 
     --card: 0 0% 100%;
-    --card-foreground: 224 25% 15%;
+    --card-foreground: 0 0% 0%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 224 25% 15%;
+    --popover-foreground: 0 0% 0%;
 
     --primary: 217 91% 60%;
     --primary-foreground: 0 0% 100%;
     --primary-glow: 217 91% 70%;
 
-    --secondary: 250 30% 95%;
-    --secondary-foreground: 224 25% 25%;
+    --secondary: 250 30% 97%;
+    --secondary-foreground: 0 0% 0%;
 
-    --muted: 250 20% 96%;
-    --muted-foreground: 224 15% 55%;
+    --muted: 250 20% 98%;
+    --muted-foreground: 0 0% 40%;
 
-    --accent: 250 30% 95%;
-    --accent-foreground: 224 25% 25%;
+    --accent: 250 30% 97%;
+    --accent-foreground: 0 0% 0%;
 
     --success: 142 70% 45%;
     --success-foreground: 0 0% 100%;

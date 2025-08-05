@@ -25,17 +25,17 @@ import {
 } from "@/components/ui/sidebar"
 
 const mainItems = [
-  { title: "Dashboard", url: "/", icon: Home },
+  { title: "Painel", url: "/", icon: Home },
   { title: "Leads", url: "/leads", icon: Users },
-  { title: "Deals", url: "/deals", icon: Target },
-  { title: "Contacts", url: "/contacts", icon: Users },
-  { title: "Companies", url: "/companies", icon: Building2 },
-  { title: "Tasks", url: "/tasks", icon: CheckSquare },
+  { title: "Negócios", url: "/deals", icon: Target },
+  { title: "Contatos", url: "/contacts", icon: Users },
+  { title: "Empresas", url: "/companies", icon: Building2 },
+  { title: "Tarefas", url: "/tasks", icon: CheckSquare },
 ]
 
 const analyticsItems = [
-  { title: "Reports", url: "/reports", icon: BarChart3 },
-  { title: "Analytics", url: "/analytics", icon: PieChart },
+  { title: "Relatórios", url: "/reports", icon: BarChart3 },
+  { title: "Análises", url: "/analytics", icon: PieChart },
 ]
 
 export function AppSidebar() {
@@ -53,7 +53,7 @@ export function AppSidebar() {
   const getNavCls = ({ isActive }: { isActive: boolean }) =>
     isActive 
       ? "bg-primary text-primary-foreground font-medium shadow-sm" 
-      : "hover:bg-accent hover:text-accent-foreground transition-colors"
+      : "hover:bg-accent hover:text-accent-foreground transition-all duration-300 hover:scale-105 hover:translate-x-1"
 
   return (
     <Sidebar
@@ -67,15 +67,15 @@ export function AppSidebar() {
             </div>
             {!collapsed && (
               <div>
-                <h2 className="font-semibold text-sm">SalesCRM</h2>
-                <p className="text-xs text-muted-foreground">Professional</p>
+                <h2 className="font-semibold text-sm">VendasCRM</h2>
+                <p className="text-xs text-muted-foreground">Profissional</p>
               </div>
             )}
           </div>
         </div>
 
         <SidebarGroup>
-          <SidebarGroupLabel>Main</SidebarGroupLabel>
+          <SidebarGroupLabel>Principal</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {mainItems.map((item) => (
@@ -97,7 +97,7 @@ export function AppSidebar() {
         </SidebarGroup>
 
         <SidebarGroup>
-          <SidebarGroupLabel>Analytics</SidebarGroupLabel>
+          <SidebarGroupLabel>Análises</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {analyticsItems.map((item) => (
@@ -121,7 +121,7 @@ export function AppSidebar() {
           <SidebarMenuButton asChild>
             <NavLink to="/settings" className={getNavCls}>
               <Settings className="h-4 w-4" />
-              {!collapsed && <span>Settings</span>}
+              {!collapsed && <span>Configurações</span>}
             </NavLink>
           </SidebarMenuButton>
         </div>
