@@ -80,11 +80,11 @@ export function AppSidebar() {
             <SidebarMenu>
               {mainItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton asChild isActive={isActive(item.url)}>
                     <NavLink 
                       to={item.url} 
                       end={item.url === "/"} 
-                      className={getNavCls}
+                      className={({ isActive }) => getNavCls({ isActive })}
                     >
                       <item.icon className="h-4 w-4" />
                       {!collapsed && <span>{item.title}</span>}
@@ -102,10 +102,10 @@ export function AppSidebar() {
             <SidebarMenu>
               {analyticsItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton asChild isActive={isActive(item.url)}>
                     <NavLink 
                       to={item.url} 
-                      className={getNavCls}
+                      className={({ isActive }) => getNavCls({ isActive })}
                     >
                       <item.icon className="h-4 w-4" />
                       {!collapsed && <span>{item.title}</span>}
@@ -118,8 +118,8 @@ export function AppSidebar() {
         </SidebarGroup>
 
         <div className="mt-auto p-4 border-t border-border">
-          <SidebarMenuButton asChild>
-            <NavLink to="/settings" className={getNavCls}>
+          <SidebarMenuButton asChild isActive={isActive("/settings")}>
+            <NavLink to="/settings" className={({ isActive }) => getNavCls({ isActive })}>
               <Settings className="h-4 w-4" />
               {!collapsed && <span>Configurações</span>}
             </NavLink>
