@@ -17,7 +17,7 @@ const mockContacts = [
     company: "TechCorp Solutions",
     position: "VP of Sales",
     location: "New York, NY",
-    tags: ["Decision Maker", "Hot Lead"],
+    tags: ["Tomador de decisão", "Lider"],
     lastContact: "2024-01-15",
     dealValue: 45000
   },
@@ -29,7 +29,7 @@ const mockContacts = [
     company: "Digital Dynamics",
     position: "CTO",
     location: "San Francisco, CA",
-    tags: ["Technical", "Evaluator"],
+    tags: ["Tecnico", "Inovação"],
     lastContact: "2024-01-14",
     dealValue: 32500
   },
@@ -41,7 +41,7 @@ const mockContacts = [
     company: "Innovation Labs",
     position: "CEO",
     location: "Austin, TX",
-    tags: ["Decision Maker", "Warm Lead"],
+    tags: [ "Lider"],
     lastContact: "2024-01-13",
     dealValue: 78000
   },
@@ -56,30 +56,6 @@ const mockContacts = [
     tags: ["Influencer"],
     lastContact: "2024-01-12",
     dealValue: 23000
-  },
-  {
-    id: 5,
-    name: "David Lee",
-    email: "d.lee@smartsolutions.com",
-    phone: "+1 (555) 654-3210",
-    company: "Smart Solutions",
-    position: "VP of Technology",
-    location: "Chicago, IL",
-    tags: ["Champion", "Closed Won"],
-    lastContact: "2024-01-10",
-    dealValue: 56000
-  },
-  {
-    id: 6,
-    name: "Emma Davis",
-    email: "emma.davis@globalcorp.com",
-    phone: "+1 (555) 789-0123",
-    company: "Global Corp",
-    position: "Head of Procurement",
-    location: "Boston, MA",
-    tags: ["Decision Maker", "High Value"],
-    lastContact: "2024-01-09",
-    dealValue: 67000
   }
 ]
 
@@ -129,9 +105,8 @@ export default function Contacts() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold">Contacts</h1>
-          <p className="text-muted-foreground">Manage your business relationships and connections</p>
-        </div>
+          <h1 className="text-3xl font-bold">Contatos</h1>
+          </div>
         <Button>
           <Plus className="h-4 w-4 mr-2" />
           Add Contact
@@ -139,17 +114,17 @@ export default function Contacts() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <Card>
           <CardContent className="p-4">
             <div className="text-2xl font-bold text-primary">{mockContacts.length}</div>
-            <div className="text-sm text-muted-foreground">Total Contacts</div>
+            <div className="text-sm text-muted-foreground">Total</div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4">
             <div className="text-2xl font-bold text-success">{companies.length}</div>
-            <div className="text-sm text-muted-foreground">Companies</div>
+            <div className="text-sm text-muted-foreground">Empresas</div>
           </CardContent>
         </Card>
         <Card>
@@ -157,15 +132,7 @@ export default function Contacts() {
             <div className="text-2xl font-bold text-warning">
               {mockContacts.filter(c => c.tags.includes("Hot Lead")).length}
             </div>
-            <div className="text-sm text-muted-foreground">Hot Leads</div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="p-4">
-            <div className="text-2xl font-bold">
-              {formatCurrency(mockContacts.reduce((sum, contact) => sum + contact.dealValue, 0))}
-            </div>
-            <div className="text-sm text-muted-foreground">Total Deal Value</div>
+            <div className="text-sm text-muted-foreground">Leads</div>
           </CardContent>
         </Card>
       </div>
@@ -177,7 +144,7 @@ export default function Contacts() {
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
-                placeholder="Search contacts..."
+                placeholder="Buscar contatos"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10"
@@ -188,7 +155,7 @@ export default function Contacts() {
                 <SelectValue placeholder="Company" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Companies</SelectItem>
+                <SelectItem value="all">Todas</SelectItem>
                 {companies.map(company => (
                   <SelectItem key={company} value={company}>{company}</SelectItem>
                 ))}
@@ -199,7 +166,7 @@ export default function Contacts() {
                 <SelectValue placeholder="Tag" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Tags</SelectItem>
+                <SelectItem value="all">Todas</SelectItem>
                 {allTags.map(tag => (
                   <SelectItem key={tag} value={tag}>{tag}</SelectItem>
                 ))}
@@ -255,21 +222,6 @@ export default function Contacts() {
                     {tag}
                   </Badge>
                 ))}
-              </div>
-
-              <div className="flex items-center justify-between mt-4 pt-4 border-t">
-                <div className="text-sm">
-                  <div className="font-semibold text-primary">{formatCurrency(contact.dealValue)}</div>
-                  <div className="text-muted-foreground">Deal Value</div>
-                </div>
-                <div className="flex gap-2">
-                  <Button variant="ghost" size="sm">
-                    <Phone className="h-4 w-4" />
-                  </Button>
-                  <Button variant="ghost" size="sm">
-                    <Mail className="h-4 w-4" />
-                  </Button>
-                </div>
               </div>
             </CardContent>
           </Card>

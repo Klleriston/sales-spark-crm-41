@@ -8,21 +8,21 @@ import { Plus, Clock, Calendar, User, CheckCircle, AlertCircle, Phone } from "lu
 const mockTasks = [
   {
     id: 1,
-    title: "Call TechCorp Solutions - Follow up on proposal",
-    description: "Discuss pricing and implementation timeline",
-    priority: "high",
-    status: "pending",
+    title: "Ligar TechCorp Solutions - Seguir com proposta",
+    description: "Discutir preço e implementação",
+    priority: "Alta",
+    status: "pendente",
     dueDate: "2024-01-16",
-    assignee: "You",
+    assignee: "Você",
     company: "TechCorp Solutions",
     type: "call",
     completed: false
   },
   {
     id: 2,
-    title: "Send proposal to Digital Dynamics",
-    description: "Technical proposal for platform upgrade",
-    priority: "high",
+    title: "Mnadar proposta para Digital Dynamics",
+    description: "Porposta tecnica para upgrade de plataforma",
+    priority: "Alta",
     status: "pending",
     dueDate: "2024-01-17",
     assignee: "Sarah Wilson",
@@ -32,9 +32,9 @@ const mockTasks = [
   },
   {
     id: 3,
-    title: "Schedule demo with Innovation Labs",
-    description: "Product demonstration for integration project",
-    priority: "medium",
+    title: "Marcar demo com Innovation Labs",
+    description: "Demonstração de produto para integração em projeto",
+    priority: "medio",
     status: "in-progress",
     dueDate: "2024-01-18",
     assignee: "Mike Johnson",
@@ -44,59 +44,39 @@ const mockTasks = [
   },
   {
     id: 4,
-    title: "Follow up with Future Systems",
-    description: "Check on decision timeline",
-    priority: "medium",
+    title: "Seguir com Future Systems",
+    description: "Verificar comercial",
+    priority: "baixa",
     status: "pending",
     dueDate: "2024-01-19",
-    assignee: "You",
+    assignee: "Você",
     company: "Future Systems",
     type: "email",
     completed: false
   },
   {
     id: 5,
-    title: "Contract review with Smart Solutions",
-    description: "Legal review of service agreement",
-    priority: "low",
-    status: "completed",
+    title: "Contratar review com Smart Solutions",
+    priority: "baixa",
+    status: "completa",
     dueDate: "2024-01-15",
     assignee: "Legal Team",
     company: "Smart Solutions",
     type: "task",
     completed: true
   },
-  {
-    id: 6,
-    title: "Prepare quarterly business review",
-    description: "QBR presentation for Global Corp",
-    priority: "high",
-    status: "in-progress",
-    dueDate: "2024-01-20",
-    assignee: "You",
-    company: "Global Corp",
-    type: "task",
-    completed: false
-  }
 ]
 
 const priorityColors = {
-  high: "bg-destructive text-destructive-foreground",
-  medium: "bg-warning text-warning-foreground",
-  low: "bg-success text-success-foreground"
+  alta: "bg-destructive text-destructive-foreground",
+  medio: "bg-warning text-warning-foreground",
+  baixa: "bg-success text-success-foreground"
 }
 
 const statusColors = {
   pending: "bg-secondary text-secondary-foreground",
   "in-progress": "bg-primary text-primary-foreground",
   completed: "bg-success text-success-foreground"
-}
-
-const typeIcons = {
-  call: Phone,
-  email: "@",
-  meeting: Calendar,
-  task: CheckCircle
 }
 
 export default function Tasks() {
@@ -132,8 +112,8 @@ export default function Tasks() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold">Tasks</h1>
-          <p className="text-muted-foreground">Manage your activities and follow-ups</p>
+          <h1 className="text-3xl font-bold">Tarefas</h1>
+          <p className="text-muted-foreground">Gerencia suas atividades</p>
         </div>
         <Button>
           <Plus className="h-4 w-4 mr-2" />
@@ -146,70 +126,28 @@ export default function Tasks() {
         <Card>
           <CardContent className="p-4">
             <div className="text-2xl font-bold text-primary">{pendingTasks.length}</div>
-            <div className="text-sm text-muted-foreground">Pending Tasks</div>
+            <div className="text-sm text-muted-foreground">Tarefas pendentes</div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4">
             <div className="text-2xl font-bold text-success">{completedTasks.length}</div>
-            <div className="text-sm text-muted-foreground">Completed</div>
+            <div className="text-sm text-muted-foreground">Completas</div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4">
             <div className="text-2xl font-bold text-destructive">{overdueTasks.length}</div>
-            <div className="text-sm text-muted-foreground">Overdue</div>
+            <div className="text-sm text-muted-foreground">Atrasadas</div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4">
             <div className="text-2xl font-bold text-warning">{todayTasks.length}</div>
-            <div className="text-sm text-muted-foreground">Due Today</div>
+            <div className="text-sm text-muted-foreground">Hoje</div>
           </CardContent>
         </Card>
       </div>
-
-      {/* Filters */}
-      <Card>
-        <CardContent className="p-6">
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Select defaultValue="all">
-              <SelectTrigger className="w-full sm:w-[180px]">
-                <SelectValue placeholder="Priority" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Priorities</SelectItem>
-                <SelectItem value="high">High</SelectItem>
-                <SelectItem value="medium">Medium</SelectItem>
-                <SelectItem value="low">Low</SelectItem>
-              </SelectContent>
-            </Select>
-            <Select defaultValue="all">
-              <SelectTrigger className="w-full sm:w-[180px]">
-                <SelectValue placeholder="Status" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Status</SelectItem>
-                <SelectItem value="pending">Pending</SelectItem>
-                <SelectItem value="in-progress">In Progress</SelectItem>
-                <SelectItem value="completed">Completed</SelectItem>
-              </SelectContent>
-            </Select>
-            <Select defaultValue="all">
-              <SelectTrigger className="w-full sm:w-[180px]">
-                <SelectValue placeholder="Type" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Types</SelectItem>
-                <SelectItem value="call">Calls</SelectItem>
-                <SelectItem value="email">Emails</SelectItem>
-                <SelectItem value="meeting">Meetings</SelectItem>
-                <SelectItem value="task">Tasks</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        </CardContent>
-      </Card>
 
       {/* Tasks List */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

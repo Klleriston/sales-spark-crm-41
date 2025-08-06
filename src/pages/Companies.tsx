@@ -14,7 +14,7 @@ const mockCompanies = [
     location: "New York, NY",
     website: "www.techcorp.com",
     phone: "+1 (555) 123-4567",
-    status: "Active Customer",
+    status: "Cliente ativo",
     totalDeals: 3,
     dealValue: 125000,
     contacts: 4,
@@ -28,7 +28,7 @@ const mockCompanies = [
     location: "San Francisco, CA",
     website: "www.digitaldynamics.com",
     phone: "+1 (555) 987-6543",
-    status: "Prospect",
+    status: "Prospecção",
     totalDeals: 1,
     dealValue: 32500,
     contacts: 2,
@@ -42,7 +42,7 @@ const mockCompanies = [
     location: "Austin, TX",
     website: "www.innovationlabs.com",
     phone: "+1 (555) 456-7890",
-    status: "Qualified Lead",
+    status: "Lead Qualificado",
     totalDeals: 1,
     dealValue: 78000,
     contacts: 3,
@@ -70,7 +70,7 @@ const mockCompanies = [
     location: "Chicago, IL",
     website: "www.smartsolutions.com",
     phone: "+1 (555) 654-3210",
-    status: "Customer",
+    status: "Cliente",
     totalDeals: 2,
     dealValue: 89000,
     contacts: 5,
@@ -93,10 +93,10 @@ const mockCompanies = [
 ]
 
 const statusColors = {
-  "Active Customer": "bg-success text-success-foreground",
-  "Customer": "bg-success text-success-foreground",
-  "Prospect": "bg-warning text-warning-foreground",
-  "Qualified Lead": "bg-primary text-primary-foreground",
+  "Cliente ativo": "bg-success text-success-foreground",
+  "Cliente": "bg-success text-success-foreground",
+  "Prospecção": "bg-warning text-warning-foreground",
+  "Lead Qualificado": "bg-primary text-primary-foreground",
   "Lead": "bg-secondary text-secondary-foreground"
 }
 
@@ -122,39 +122,32 @@ export default function Companies() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold">Companies</h1>
-          <p className="text-muted-foreground">Manage your business accounts and organizations</p>
+          <h1 className="text-3xl font-bold">Empresas</h1>
         </div>
         <Button>
           <Plus className="h-4 w-4 mr-2" />
-          Add Company
+          Add Empresa
         </Button>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <Card>
           <CardContent className="p-4">
             <div className="text-2xl font-bold text-primary">{totalCompanies}</div>
-            <div className="text-sm text-muted-foreground">Total Companies</div>
+            <div className="text-sm text-muted-foreground">Total</div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4">
             <div className="text-2xl font-bold text-success">{activeCustomers}</div>
-            <div className="text-sm text-muted-foreground">Active Customers</div>
+            <div className="text-sm text-muted-foreground">Clientes ativos</div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4">
             <div className="text-2xl font-bold">{formatCurrency(totalValue)}</div>
-            <div className="text-sm text-muted-foreground">Total Value</div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="p-4">
-            <div className="text-2xl font-bold">{formatCurrency(avgDealSize)}</div>
-            <div className="text-sm text-muted-foreground">Avg Deal Size</div>
+            <div className="text-sm text-muted-foreground">Valor total</div>
           </CardContent>
         </Card>
       </div>
@@ -165,7 +158,7 @@ export default function Companies() {
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
-              placeholder="Search companies..."
+              placeholder="Buscar empresas..."
               className="pl-10"
             />
           </div>

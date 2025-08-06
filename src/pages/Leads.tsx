@@ -5,54 +5,42 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Plus, Search, Filter, Phone, Mail, Calendar } from "lucide-react"
+import { Plus, Search, Phone, Mail, Calendar } from "lucide-react"
 
 // Mock leads data
 const mockLeads = [
   {
     id: 1,
-    name: "Sarah Johnson",
+    name: "Jeferson Caua",
     company: "TechStart Inc",
-    email: "sarah@techstart.com",
-    phone: "+1 (555) 123-4567",
+    email: "j.caua@techstart.com",
+    phone: "+55 (11) 912417266",
     source: "Website",
-    status: "New",
+    status: "Novo",
     score: 85,
     lastContact: "2024-01-15",
     createdAt: "2024-01-10"
   },
   {
-    id: 2,
-    name: "Michael Chen",
-    company: "Digital Solutions",
-    email: "m.chen@digitalsol.com",
-    phone: "+1 (555) 987-6543",
-    source: "Referral",
-    status: "Qualified",
-    score: 92,
-    lastContact: "2024-01-14",
-    createdAt: "2024-01-08"
-  },
-  {
     id: 3,
-    name: "Emily Rodriguez",
+    name: "Laura Rodriguez",
     company: "Innovation Corp",
-    email: "emily.r@innovation.com",
-    phone: "+1 (555) 456-7890",
+    email: "laura.r@innovation.com",
+    phone: "+55 (12) 912351266",
     source: "LinkedIn",
-    status: "Contacted",
+    status: "Contactados",
     score: 78,
     lastContact: "2024-01-13",
     createdAt: "2024-01-12"
   },
   {
     id: 4,
-    name: "David Thompson",
+    name: "Pedro Zynovisk",
     company: "Future Tech",
-    email: "david@futuretech.com",
-    phone: "+1 (555) 321-9876",
-    source: "Cold Call",
-    status: "Nurturing",
+    email: "p.zynas@futuretech.com",
+    phone: "+55 (11) 912032462",
+    source: "Tiktok",
+    status: "Qualificados",
     score: 65,
     lastContact: "2024-01-12",
     createdAt: "2024-01-05"
@@ -87,7 +75,7 @@ export default function Leads() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold">Leads</h1>
-          <p className="text-muted-foreground">Manage and track your sales prospects</p>
+          <p className="text-muted-foreground">Gerencia a prospeção de suas vendas</p>
         </div>
         <Button className="sm:w-auto">
           <Plus className="h-4 w-4 mr-2" />
@@ -100,25 +88,25 @@ export default function Leads() {
         <Card>
           <CardContent className="p-4">
             <div className="text-2xl font-bold text-primary">127</div>
-            <div className="text-sm text-muted-foreground">Total Leads</div>
+            <div className="text-sm text-muted-foreground">Total de Leads</div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4">
             <div className="text-2xl font-bold text-success">38</div>
-            <div className="text-sm text-muted-foreground">Qualified</div>
+            <div className="text-sm text-muted-foreground">Qualificados</div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4">
             <div className="text-2xl font-bold text-warning">24</div>
-            <div className="text-sm text-muted-foreground">In Progress</div>
+            <div className="text-sm text-muted-foreground">Em progresso</div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4">
             <div className="text-2xl font-bold">82%</div>
-            <div className="text-sm text-muted-foreground">Avg. Score</div>
+            <div className="text-sm text-muted-foreground">Média</div>
           </CardContent>
         </Card>
       </div>
@@ -130,7 +118,7 @@ export default function Leads() {
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
-                placeholder="Search leads..."
+                placeholder="Buscar"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10"
@@ -141,12 +129,11 @@ export default function Leads() {
                 <SelectValue placeholder="Status" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Status</SelectItem>
-                <SelectItem value="New">New</SelectItem>
-                <SelectItem value="Contacted">Contacted</SelectItem>
-                <SelectItem value="Qualified">Qualified</SelectItem>
-                <SelectItem value="Nurturing">Nurturing</SelectItem>
-                <SelectItem value="Lost">Lost</SelectItem>
+                <SelectItem value="all">Todos Status</SelectItem>
+                <SelectItem value="Novo">Novo</SelectItem>
+                <SelectItem value="Contratados">Contratados</SelectItem>
+                <SelectItem value="Qualificados">Qualificados</SelectItem>
+                <SelectItem value="Perdidos">Perdidos</SelectItem>
               </SelectContent>
             </Select>
             <Select value={sourceFilter} onValueChange={setSourceFilter}>
@@ -154,11 +141,11 @@ export default function Leads() {
                 <SelectValue placeholder="Source" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Sources</SelectItem>
-                <SelectItem value="Website">Website</SelectItem>
-                <SelectItem value="Referral">Referral</SelectItem>
+                <SelectItem value="all">Todos</SelectItem>
+                <SelectItem value="Website">Site</SelectItem>
                 <SelectItem value="LinkedIn">LinkedIn</SelectItem>
-                <SelectItem value="Cold Call">Cold Call</SelectItem>
+                <SelectItem value="Instagram">Instagram</SelectItem>
+                <SelectItem value="Tiktok">Tiktok</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -168,21 +155,21 @@ export default function Leads() {
       {/* Leads Table */}
       <Card>
         <CardHeader>
-          <CardTitle>Leads List ({filteredLeads.length})</CardTitle>
+          <CardTitle>Leads ({filteredLeads.length})</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Company</TableHead>
-                  <TableHead>Contact</TableHead>
-                  <TableHead>Source</TableHead>
+                  <TableHead>Nome</TableHead>
+                  <TableHead>Empres</TableHead>
+                  <TableHead>Contato</TableHead>
+                  <TableHead>Raiz</TableHead>
                   <TableHead>Status</TableHead>
                   <TableHead>Score</TableHead>
-                  <TableHead>Last Contact</TableHead>
-                  <TableHead>Actions</TableHead>
+                  <TableHead>Ultimo contato</TableHead>
+                  <TableHead>Ações</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>

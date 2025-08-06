@@ -1,15 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { LucideIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
-
-interface MetricCardProps {
-  title: string
-  value: string | number
-  change?: string
-  changeType?: "positive" | "negative" | "neutral"
-  icon: LucideIcon
-  className?: string
-}
+import { MetricCardProps } from "../interfaces/metricCardProps"
 
 export function MetricCard({ 
   title, 
@@ -37,7 +28,7 @@ export function MetricCard({
         <div className="text-2xl font-bold">{value}</div>
         {change && (
           <p className={cn("text-xs", changeColor)}>
-            {change} from last month
+            {change} no ultimo mês
           </p>
         )}
       </CardContent>

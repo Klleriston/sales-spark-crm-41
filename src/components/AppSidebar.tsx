@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { 
   BarChart3, 
   Users, 
@@ -20,14 +19,12 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar"
 
 const mainItems = [
   { title: "Painel", url: "/", icon: Home },
   { title: "Leads", url: "/leads", icon: Users },
-  { title: "Negócios", url: "/deals", icon: Target },
   { title: "Contatos", url: "/contacts", icon: Users },
   { title: "Empresas", url: "/companies", icon: Building2 },
   { title: "Tarefas", url: "/tasks", icon: CheckSquare },
@@ -39,10 +36,8 @@ const analyticsItems = [
 ]
 
 export function AppSidebar() {
-  const { state } = useSidebar()
   const location = useLocation()
   const currentPath = location.pathname
-  const collapsed = state === "collapsed"
 
   const isActive = (path: string) => {
     if (path === "/" && currentPath === "/") return true
@@ -56,21 +51,16 @@ export function AppSidebar() {
       : "hover:bg-accent hover:text-accent-foreground transition-all duration-300 hover:scale-105 hover:translate-x-1"
 
   return (
-    <Sidebar
-      collapsible="icon"
-    >
+    <Sidebar>
       <SidebarContent className="bg-card border-r border-border">
         <div className="p-4 border-b border-border">
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-              <BarChart3 className="h-4 w-4 text-primary-foreground" />
+            <div className="h-6 w-6 p-1 rounded-lg bg-primary flex items-center justify-center">
+              <BarChart3 className="h-4 w-6 text-primary-foreground" />
             </div>
-            {!collapsed && (
               <div>
-                <h2 className="font-semibold text-sm">VendasCRM</h2>
-                <p className="text-xs text-muted-foreground">Profissional</p>
+                <h2 className="font-semibold text-sm">Nakamura CRM</h2>
               </div>
-            )}
           </div>
         </div>
 
@@ -87,7 +77,7 @@ export function AppSidebar() {
                       className={({ isActive }) => getNavCls({ isActive })}
                     >
                       <item.icon className="h-4 w-4" />
-                      {!collapsed && <span>{item.title}</span>}
+                      <span>{item.title}</span>
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -108,7 +98,7 @@ export function AppSidebar() {
                       className={({ isActive }) => getNavCls({ isActive })}
                     >
                       <item.icon className="h-4 w-4" />
-                      {!collapsed && <span>{item.title}</span>}
+                       <span>{item.title}</span>
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -121,7 +111,7 @@ export function AppSidebar() {
           <SidebarMenuButton asChild isActive={isActive("/settings")}>
             <NavLink to="/settings" className={({ isActive }) => getNavCls({ isActive })}>
               <Settings className="h-4 w-4" />
-              {!collapsed && <span>Configurações</span>}
+              <span>Configurações</span>
             </NavLink>
           </SidebarMenuButton>
         </div>

@@ -48,7 +48,7 @@ const recentDeals = [
   { id: 1, company: "TechCorp Soluções", value: "R$ 45.000", stage: "Negociação", probability: 85 },
   { id: 2, company: "Digital Dynamics", value: "R$ 32.500", stage: "Proposta", probability: 60 },
   { id: 3, company: "Laboratórios Inovação", value: "R$ 78.000", stage: "Qualificado", probability: 45 },
-  { id: 4, company: "Sistemas Futuros", value: "R$ 23.000", stage: "Descoberta", probability: 25 },
+  { id: 4, company: "Sistemas Futuros", value: "R$ 23.000", stage: "Descoberta", probability: 65 },
   { id: 5, company: "Soluções Inteligentes", value: "R$ 56.000", stage: "Fechado", probability: 100 }
 ]
 
@@ -71,7 +71,7 @@ export default function Dashboard() {
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold">Painel de Vendas</h1>
-        <p className="text-muted-foreground">Acompanhe seu desempenho de vendas e pipeline</p>
+        <p className="text-muted-foreground">Acompanhe seu desempenho de vendas</p>
       </div>
 
       {/* Metrics Grid */}
