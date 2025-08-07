@@ -32,7 +32,6 @@ const mainItems = [
 
 const analyticsItems = [
   { title: "Relatórios", url: "/reports", icon: BarChart3 },
-  { title: "Análises", url: "/analytics", icon: PieChart },
 ]
 
 export function AppSidebar() {

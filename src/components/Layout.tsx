@@ -2,12 +2,22 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/AppSidebar"
 import { Bell, Search, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useNavigate } from "react-router-dom"
 
 interface LayoutProps {
   children: React.ReactNode
 }
 
 export function Layout({ children }: LayoutProps) {
+  const navigate = useNavigate();
+
+  const handleNotificationClick = () => {
+    navigate('/notifications')
+  }
+  
+  const handleUserClick = () => {
+    navigate('/profile')
+  }
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -19,10 +29,10 @@ export function Layout({ children }: LayoutProps) {
           </div>
           
           <div className="flex items-center gap-3">
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" onClick={handleNotificationClick} >
               <Bell className="h-4 w-4" />
             </Button>
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" onClick={handleUserClick}>
               <User className="h-4 w-4" />
             </Button>
           </div>
