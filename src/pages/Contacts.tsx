@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent} from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -7,7 +7,6 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Plus, Search, Phone, Mail, MapPin, Building2 } from "lucide-react"
 
-// Mock contacts data
 const mockContacts = [
   {
     id: 1,
@@ -113,7 +112,6 @@ export default function Contacts() {
         </Button>
       </div>
 
-      {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <Card>
           <CardContent className="p-4">
@@ -137,7 +135,6 @@ export default function Contacts() {
         </Card>
       </div>
 
-      {/* Filters */}
       <Card>
         <CardContent className="p-6">
           <div className="flex flex-col sm:flex-row gap-4">
@@ -176,7 +173,6 @@ export default function Contacts() {
         </CardContent>
       </Card>
 
-      {/* Contacts Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredContacts.map((contact) => (
           <Card key={contact.id} className="hover:shadow-lg transition-shadow cursor-pointer">

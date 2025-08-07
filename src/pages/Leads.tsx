@@ -7,7 +7,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Plus, Search, Phone, Mail, Calendar } from "lucide-react"
 
-// Mock leads data
 const mockLeads = [
   {
     id: 1,
@@ -48,11 +47,11 @@ const mockLeads = [
 ]
 
 const statusColors = {
-  "New": "bg-blue-100 text-blue-800",
-  "Contacted": "bg-yellow-100 text-yellow-800",
-  "Qualified": "bg-green-100 text-green-800",
-  "Nurturing": "bg-purple-100 text-purple-800",
-  "Lost": "bg-red-100 text-red-800"
+  "Novo": "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300",
+  "Contactados": "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300",
+  "Qualificados": "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300",
+  "Em Progresso": "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300",
+  "Perdidos": "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300"
 }
 
 export default function Leads() {
@@ -84,70 +83,88 @@ export default function Leads() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
         <Card>
-          <CardContent className="p-4">
-            <div className="text-2xl font-bold text-primary">127</div>
-            <div className="text-sm text-muted-foreground">Total de Leads</div>
+          <CardContent className="p-3 md:p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="text-xl md:text-2xl font-bold text-primary">127</div>
+                <div className="text-xs md:text-sm text-muted-foreground">Total de Leads</div>
+              </div>
+            </div>
           </CardContent>
         </Card>
         <Card>
-          <CardContent className="p-4">
-            <div className="text-2xl font-bold text-success">38</div>
-            <div className="text-sm text-muted-foreground">Qualificados</div>
+          <CardContent className="p-3 md:p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="text-xl md:text-2xl font-bold text-success">38</div>
+                <div className="text-xs md:text-sm text-muted-foreground">Qualificados</div>
+              </div>
+            </div>
           </CardContent>
         </Card>
         <Card>
-          <CardContent className="p-4">
-            <div className="text-2xl font-bold text-warning">24</div>
-            <div className="text-sm text-muted-foreground">Em progresso</div>
+          <CardContent className="p-3 md:p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="text-xl md:text-2xl font-bold text-warning">24</div>
+                <div className="text-xs md:text-sm text-muted-foreground">Em progresso</div>
+              </div>
+            </div>
           </CardContent>
         </Card>
         <Card>
-          <CardContent className="p-4">
-            <div className="text-2xl font-bold">82%</div>
-            <div className="text-sm text-muted-foreground">Média</div>
+          <CardContent className="p-3 md:p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="text-xl md:text-2xl font-bold">82%</div>
+                <div className="text-xs md:text-sm text-muted-foreground">Média</div>
+              </div>
+            </div>
           </CardContent>
         </Card>
       </div>
 
       {/* Filters */}
       <Card>
-        <CardContent className="p-6">
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Buscar"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
-              />
+        <CardContent className="p-4 md:p-6">
+          <div className="flex flex-col gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  placeholder="Buscar por nome, empresa ou email"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10 w-full"
+                />
+              </div>
+              <Select value={statusFilter} onValueChange={setStatusFilter}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Filtrar por Status" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Todos Status</SelectItem>
+                  <SelectItem value="Novo">Novo</SelectItem>
+                  <SelectItem value="Contratados">Contratados</SelectItem>
+                  <SelectItem value="Qualificados">Qualificados</SelectItem>
+                  <SelectItem value="Perdidos">Perdidos</SelectItem>
+                </SelectContent>
+              </Select>
+              <Select value={sourceFilter} onValueChange={setSourceFilter}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Filtrar por Origem" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Todas as Origens</SelectItem>
+                  <SelectItem value="Website">Site</SelectItem>
+                  <SelectItem value="LinkedIn">LinkedIn</SelectItem>
+                  <SelectItem value="Instagram">Instagram</SelectItem>
+                  <SelectItem value="Tiktok">Tiktok</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
-            <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger className="w-full sm:w-[180px]">
-                <SelectValue placeholder="Status" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">Todos Status</SelectItem>
-                <SelectItem value="Novo">Novo</SelectItem>
-                <SelectItem value="Contratados">Contratados</SelectItem>
-                <SelectItem value="Qualificados">Qualificados</SelectItem>
-                <SelectItem value="Perdidos">Perdidos</SelectItem>
-              </SelectContent>
-            </Select>
-            <Select value={sourceFilter} onValueChange={setSourceFilter}>
-              <SelectTrigger className="w-full sm:w-[180px]">
-                <SelectValue placeholder="Source" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">Todos</SelectItem>
-                <SelectItem value="Website">Site</SelectItem>
-                <SelectItem value="LinkedIn">LinkedIn</SelectItem>
-                <SelectItem value="Instagram">Instagram</SelectItem>
-                <SelectItem value="Tiktok">Tiktok</SelectItem>
-              </SelectContent>
-            </Select>
           </div>
         </CardContent>
       </Card>
@@ -157,49 +174,65 @@ export default function Leads() {
         <CardHeader>
           <CardTitle>Leads ({filteredLeads.length})</CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="overflow-x-auto">
+        <CardContent className="p-0">
+          <div className="overflow-auto">
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Nome</TableHead>
-                  <TableHead>Empres</TableHead>
-                  <TableHead>Contato</TableHead>
-                  <TableHead>Raiz</TableHead>
+                  <TableHead>Nome/Empresa</TableHead>
+                  <TableHead className="hidden md:table-cell">Contato</TableHead>
+                  <TableHead className="hidden sm:table-cell">Origem</TableHead>
                   <TableHead>Status</TableHead>
-                  <TableHead>Score</TableHead>
-                  <TableHead>Ultimo contato</TableHead>
-                  <TableHead>Ações</TableHead>
+                  <TableHead className="hidden lg:table-cell">Score</TableHead>
+                  <TableHead className="hidden md:table-cell">Último contato</TableHead>
+                  <TableHead className="text-right">Ações</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {filteredLeads.map((lead) => (
-                  <TableRow key={lead.id}>
-                    <TableCell className="font-medium">{lead.name}</TableCell>
-                    <TableCell>{lead.company}</TableCell>
+                  <TableRow key={lead.id} className="group">
                     <TableCell>
-                      <div className="space-y-1">
-                        <div className="flex items-center gap-1 text-sm">
-                          <Mail className="h-3 w-3" />
-                          {lead.email}
-                        </div>
-                        <div className="flex items-center gap-1 text-sm">
-                          <Phone className="h-3 w-3" />
-                          {lead.phone}
+                      <div>
+                        <div className="font-medium">{lead.name}</div>
+                        <div className="text-sm text-muted-foreground">{lead.company}</div>
+                        {/* Informações extras em telas pequenas */}
+                        <div className="md:hidden space-y-1 mt-1 text-sm text-muted-foreground">
+                          <div className="flex items-center gap-1">
+                            <Mail className="h-3 w-3" />
+                            <span className="truncate">{lead.email}</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Calendar className="h-3 w-3" />
+                            <span>{lead.lastContact}</span>
+                          </div>
                         </div>
                       </div>
                     </TableCell>
-                    <TableCell>
-                      <Badge variant="outline">{lead.source}</Badge>
+                    <TableCell className="hidden md:table-cell">
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-1 text-sm">
+                          <Mail className="h-3 w-3 flex-shrink-0" />
+                          <span className="truncate max-w-[200px]">{lead.email}</span>
+                        </div>
+                        <div className="flex items-center gap-1 text-sm">
+                          <Phone className="h-3 w-3 flex-shrink-0" />
+                          <span className="truncate">{lead.phone}</span>
+                        </div>
+                      </div>
                     </TableCell>
-                    <TableCell>
-                      <Badge className={statusColors[lead.status as keyof typeof statusColors]}>
-                        {lead.status}
+                    <TableCell className="hidden sm:table-cell">
+                      <Badge variant="outline" className="whitespace-nowrap">
+                        {lead.source}
                       </Badge>
                     </TableCell>
                     <TableCell>
+                      <Badge className={`whitespace-nowrap ${statusColors[lead.status as keyof typeof statusColors]}`}>
+                        {lead.status}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="hidden lg:table-cell">
                       <div className="flex items-center gap-2">
-                        <div className="text-sm font-medium">{lead.score}</div>
+                        <div className="text-sm font-medium min-w-[2ch]">{lead.score}</div>
                         <div className="w-16 h-2 bg-muted rounded-full">
                           <div 
                             className="h-full bg-primary rounded-full" 
@@ -208,18 +241,18 @@ export default function Leads() {
                         </div>
                       </div>
                     </TableCell>
-                    <TableCell>
-                      <div className="flex items-center gap-1 text-sm">
+                    <TableCell className="hidden md:table-cell">
+                      <div className="flex items-center gap-1 text-sm whitespace-nowrap">
                         <Calendar className="h-3 w-3" />
                         {lead.lastContact}
                       </div>
                     </TableCell>
-                    <TableCell>
-                      <div className="flex gap-2">
-                        <Button variant="ghost" size="sm">
+                    <TableCell className="text-right">
+                      <div className="flex justify-end gap-2">
+                        <Button variant="ghost" size="icon" className="h-8 w-8">
                           <Phone className="h-4 w-4" />
                         </Button>
-                        <Button variant="ghost" size="sm">
+                        <Button variant="ghost" size="icon" className="h-8 w-8">
                           <Mail className="h-4 w-4" />
                         </Button>
                       </div>

@@ -12,7 +12,6 @@ import {
   CheckCircle
 } from "lucide-react"
 
-// Dados simulados
 const metrics = [
   {
     title: "Receita Total",
@@ -74,7 +73,6 @@ export default function Dashboard() {
         <p className="text-muted-foreground">Acompanhe seu desempenho de vendas</p>
       </div>
 
-      {/* Metrics Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {metrics.map((metric, index) => (
           <MetricCard key={index} {...metric} />
@@ -82,7 +80,6 @@ export default function Dashboard() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Recent Deals */}
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -114,9 +111,7 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
-        {/* Recent Activities & Tasks */}
         <div className="space-y-6">
-          {/* Upcoming Tasks */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -147,7 +142,6 @@ export default function Dashboard() {
             </CardContent>
           </Card>
 
-          {/* Recent Activities */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">

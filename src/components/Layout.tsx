@@ -1,6 +1,6 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/AppSidebar"
-import { Bell, Search, User } from "lucide-react"
+import { Bell, Search, User, LogOut } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useNavigate } from "react-router-dom"
 
@@ -18,6 +18,12 @@ export function Layout({ children }: LayoutProps) {
   const handleUserClick = () => {
     navigate('/profile')
   }
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    navigate('/login');
+  }
+  
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -34,6 +40,9 @@ export function Layout({ children }: LayoutProps) {
             </Button>
             <Button variant="ghost" size="icon" onClick={handleUserClick}>
               <User className="h-4 w-4" />
+            </Button>
+            <Button variant="ghost" size="icon" onClick={handleLogout}>
+              <LogOut className="h-4 w-4" />
             </Button>
           </div>
         </header>
